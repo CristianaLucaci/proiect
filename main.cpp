@@ -1,16 +1,7 @@
 #include <iostream>
-#include "namespace.cpp"
-
-void swap(int &a, int &b){
-    int tmp;
-    tmp = a;
-    a = b;
-    b = tmp;
-}
-
-int biggestNumber(int a, int b){
-    return a>=b?a:b;
-}
+#include "people.cpp"
+#include "color.cpp"
+#include "red.cpp"
 
 int main(){
 
@@ -26,7 +17,23 @@ int main(){
     b=7;
     c=15;
 
-    swap(b,c);
-
     std::cout << "b= "<< b<< "c= "<<c<< std::endl;
+
+    /*** Item 5: Know what functions C++ silently writes and calls. */
+
+   // -copy constructor and assignment operator
+
+   people redHead;
+   people people1;
+
+   people people2 = redHead; // copy constructor
+
+   people2.printAge();
+   people1 = people2;
+
+   /*** Item 6: Explicitly disallow the use of compiler generated functions you do not want. */
+   Red red1;
+   Red red2;
+   //Red red3 = red1; //nu putem copia pt ca e deleted copy operator
+
 }
