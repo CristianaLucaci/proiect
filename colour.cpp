@@ -11,7 +11,7 @@ class colour{
 
     colour(const colour &color) = delete;
 
-    // colour& operator = (const colour& c);
+    colour& operator = (const colour& c);
 
     virtual ~colour(){
         std::cout<<"bye color"<<std::endl;

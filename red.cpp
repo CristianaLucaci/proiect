@@ -8,7 +8,7 @@ class Red: public colour{
 
     public:
     Red(){
-        count++;
+        //count++;
         std::cout<<"Red construcotr"<<std::endl;
     }
 
