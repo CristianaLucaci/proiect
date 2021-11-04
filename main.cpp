@@ -1,6 +1,5 @@
 #include <iostream>
 #include "people.cpp"
-#include "color.cpp"
 #include "red.cpp"
 
 int main(){
@@ -32,8 +31,10 @@ int main(){
    people1 = people2;
 
    /*** Item 6: Explicitly disallow the use of compiler generated functions you do not want. */
-   Red red1;
-   Red red2;
-   //Red red3 = red1; //nu putem copia pt ca e deleted copy operator
+//    Red red1;
+//    //Red red3 = red1; //nu putem copia pt ca e deleted copy operator
+
+   colour red;
+   //colour yellow = red;
 
 }

@@ -28,7 +28,7 @@ class people {
         return this->age;
     }
 
-    virtual ~people(){
+    ~people(){
         std::cout<< "Apleare Destructor"<<std::endl;
     }
 };

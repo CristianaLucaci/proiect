@@ -1,7 +1,7 @@
 #include <iostream>
-#include "color.cpp"
+#include "colour.cpp"
 
-class Red: public color{
+class Red: public colour{
     private:
     std::string action="color becomes red";
     static int count;
