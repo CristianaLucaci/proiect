@@ -1,9 +1,21 @@
 #include <iostream>
 #include <string>
+#include <mutex>
+#include <thread>
 #include "people.cpp"
 #include "red.cpp"
 #include "operations.cpp"
 #include "item11and12.cpp"
+#include "tema3.cpp"
+
+std::mutex mtx;
+
+void print_block (int n, char c) {
+  mtx.lock();
+  for (int i=0; i<n; ++i) { std::cout << c; }
+  std::cout << '\n';
+  mtx.unlock();
+}
 
 int main(){
 
@@ -85,5 +97,42 @@ int main(){
 
     //Third Assignmnet
 
-    std::cout<<'\n'<<'\n'<<"Third assignment:"<<'\n'; 
+    std::cout<<'\n'<<'\n'<<"Third assignment:\n\n"<<'\n'; 
+
+    /*** Item 13: Use objects to manage resources.*/
+
+    // RAII - Resource Acquisition Is Initialization
+
+    unique_ptr<Rectangle> P1(new Rectangle(10,5));
+
+    cout << P1->area() << endl; //This will print 50, folosit ca un pointer normal
+
+    unique_ptr<Rectangle> P2;
+    //P2 = P1; //nu se poate copia un unique pointer, doar muta
+    P2=move(P1); //dupa ce s-a facut mutarea, primul pointer este sters, nu mai are ownership pe obiectul respectiv
+
+    cout << P2->area() << endl;
+    //cout << P1->area() << endl; //segmenation fault
+
+    shared_ptr<Rectangle> P3(new Rectangle(5,5));
+    cout << P3->area() << endl;
+
+    shared_ptr<Rectangle> P4;
+    P4 = P3;
+    cout << P4->area() << endl;
+    cout << P3->area() << endl; //aici nu avem eroare
+    cout << P3.use_count() << endl; //cati pointeri indica catre obiect
+
+
+    /*** Item 14: Think carefully about copying behavior in resource-managing classes.*/
+
+    std::thread th1 (print_block,50,'1');
+    std::thread th2 (print_block,50,'2');
+
+    th1.join();
+    th2.join();
+
+
+    std::cout<<"\n--------------------------------------------"<<"\n\n\n"; 
+return 0;
 }            
